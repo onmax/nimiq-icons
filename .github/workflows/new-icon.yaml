@@ -1,0 +1,116 @@
+name: New icon
+
+on:
+  issues:
+    types: [opened, reopened]
+
+env:
+  ICONS_FOLDER: "./public/icons"
+  USERS_WHITELIST: "onmax" # comma separated list of users that can add icons
+
+jobs:
+  trigger:
+    name: Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - name: check label
+        if: ${{ github.event.issue.labels[0].name != 'new-icon' }}
+        run: |
+          echo "Issue is not labeled with new-icon"
+          exit 1
+      - name: User is whitelisted
+        if: ${{ !contains(env.USERS_WHITELIST, env.ISSUE_AUTHOR) }}
+        run: |
+          echo "User is not whitelisted"
+          exit 1
+      # - name: Admin reacted to the issue
+      #   if: ${{ github.event.issue_comment.comment.reactions.rocket === 0 }}
+      #   run: |
+      #     echo "${{ env.ISSUE_AUTHOR }} did not react with 🚀 to the issue"
+      #     exit 1
+      - name: summary
+        run: |
+          echo "### Adding new icon! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "See issue [#${{ github.event.issue.number }}](${{ github.event.issue.html_url }})" >> $GITHUB_STEP_SUMMARY
+  comment:
+    name: Comment on the issue
+    runs-on: ubuntu-latest
+    needs: [trigger]
+    steps:
+      - name: Print issue number
+        run: echo "Comenting on issue \#${{ github.event.issue.number }}"
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Follow the run through: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+  parse-form:
+    name: Convert Form Issue to config file
+    runs-on: ubuntu-latest
+    needs: [trigger]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Parse issue
+        id: parse
+        uses: onmax/issue-form-parser@v1.1
+        with:
+          issue_number: ${{ github.event.issue.number }}
+      - name: Show issue form
+        run: |
+          echo 'name=${{ fromJson(steps.parse.outputs.payload)['Name'] }}'
+          echo 'keywords=${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}'
+          echo 'svg=${{ fromJson(steps.parse.outputs.payload)['SVG'] }}'
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install svgo
+        run: yarn global add svgo
+      - name: Optimize SVG
+        id: optimize_svg
+        run: |
+          echo '${{ fromJson(steps.parse.outputs.payload)['SVG'] }}' | sed 's/`//g' | sed 's/html//g' > icon.svg
+          svgo icon.svg -o icon.min.svg
+          echo "svg_min=$(cat icon.min.svg)" >> $GITHUB_OUTPUT
+      - name: Create ts file
+        run: |
+          mkdir -p ${{ env.ICONS_FOLDER }}
+          echo "export default {
+            \"name\": \"${{ fromJson(steps.parse.outputs.payload)['Name'] }}\",
+            \"keywords\": \"${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}\",
+            \"svg\": \"${{ steps.optimize_svg.outputs.svg_min }}\",
+          } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${{ fromJson(steps.parse.outputs.payload)['Name'] }}.ts
+      - name: Commit & Push
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: ${{ env.ICONS_FOLDER }}
+          push: origin main --force
+      - name: Create comment with new content
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ### ${{ fromJson(steps.parse.outputs.payload)['Name'] }}
+            
+            <sub>${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}</sub>
+
+            ```html
+            ${{ steps.optimize_svg.outputs.svg_min }}
+            ```
+
+            New file: [${{ env.ICONS_FOLDER }}/icon_${{ fromJson(steps.parse.outputs.payload)['Name'] }}.ts](https://github.com/onmax/nimiq-icons/blob/main/${{ env.ICONS_FOLDER }}/icon_${{ fromJson(steps.parse.outputs.payload)['Name'] }}.ts)
+          reactions: '+1'
+  auto-closing-issue:
+    needs: [parse-form]
+    name: Auto-closing Issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Close Issue
+        id: parse
+        uses: peter-evans/close-issue@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment: Closed automatically through https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
