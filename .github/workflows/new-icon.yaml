@@ -38,7 +38,7 @@ jobs:
     needs: [trigger]
     steps:
       - name: Print issue number
-        run: echo "Comenting on issue \#${{ github.event.issue.number }}"
+        run: echo "Commenting on issue \#${{ github.event.issue.number }}"
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
@@ -85,7 +85,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: ${{ env.ICONS_FOLDER }}
-          push: origin main --force
+          push: origin icons --force
       - name: Create comment with new content
         uses: peter-evans/create-or-update-comment@v2
         with:
