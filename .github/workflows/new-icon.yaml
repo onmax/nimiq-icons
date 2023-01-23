@@ -71,8 +71,9 @@ jobs:
         id: optimize_svg
         run: |
           echo '${{ fromJson(steps.parse.outputs.payload)['SVG'] }}' | sed 's/`//g' | sed 's/html//g' > icon.svg
-          sed -i 's/stroke=".*"/stroke="currentColor"/g' icon.svg
-          sed -i 's/fill=".*"/fill="currentColor"/g' icon.svg
+          # replace fill and stroke colors with 'currentColor'. Ignore if fill="none" or stroke="none"
+          sed -i 's/fill="[^"(none)]*"/fill="currentColor"/g' icon.svg
+          sed -i 's/stroke="[^"(none)]*"/stroke="currentColor"/g' icon.svg
           svgo icon.svg -o icon.min.svg
           echo "svg_min=$(cat icon.min.svg)" >> $GITHUB_OUTPUT
       - name: Create ts file
