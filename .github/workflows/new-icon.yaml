@@ -88,7 +88,7 @@ jobs:
             \"name\": \"${{ fromJson(steps.parse.outputs.payload)['Name'] }}\",
             \"keywords\": \"${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}\",
             \"svg\": \"${{ steps.optimize_svg.outputs.svg_min }}\",
-          } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${{ fromJson(steps.parse.outputs.payload)['Name'] }}.ts
+          } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${{ join(fromJson(steps.parse.outputs.payload)['Name'],'-') }}.ts
       - name: Commit & Push
         uses: EndBug/add-and-commit@v9
         with:
@@ -108,7 +108,7 @@ jobs:
             ${{ steps.optimize_svg.outputs.svg_min }}
             ```
 
-            New file: [${{ env.ICONS_FOLDER }}/icon_${{ fromJson(steps.parse.outputs.payload)['Name'] }}.ts](https://github.com/onmax/nimiq-icons/blob/main/${{ env.ICONS_FOLDER }}/icon_${{ fromJson(steps.parse.outputs.payload)['Name'] }}.ts)
+            New file: [${{ env.ICONS_FOLDER }}/icon_${{ join(fromJson(steps.parse.outputs.payload)['Name'],'-') }}.ts](https://github.com/onmax/nimiq-icons/blob/main/${{ env.ICONS_FOLDER }}/icon_${{ join(fromJson(steps.parse.outputs.payload)['Name'],'-') }}.ts)
           reactions: '+1'
   auto-closing-issue:
     needs: [parse-form]
