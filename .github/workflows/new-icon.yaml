@@ -88,7 +88,8 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: ${{ env.ICONS_FOLDER }}
-          push: origin icons --force
+          new_branch: new-icons
+          message: "Add new icon: ${{ fromJson(steps.parse.outputs.payload)['Name'] }}"
       - name: Create comment with new content
         uses: peter-evans/create-or-update-comment@v2
         with:
