@@ -61,6 +61,11 @@ jobs:
           echo 'name=${{ fromJson(steps.parse.outputs.payload)['Name'] }}'
           echo 'keywords=${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}'
           echo 'svg=${{ fromJson(steps.parse.outputs.payload)['SVG'] }}'
+      - name: Check if issue is valid
+        if: ${{ fromJson(steps.parse.outputs.payload)['Name'] == '' || fromJson(steps.parse.outputs.payload)['Keywords'] == '' || fromJson(steps.parse.outputs.payload)['SVG'] == '' }}
+        run: |
+          echo "Issue is not valid"
+          exit 1
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
