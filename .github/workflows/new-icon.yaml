@@ -84,13 +84,15 @@ jobs:
       - name: Create ts file
         run: |
           mkdir -p ${{ env.ICONS_FOLDER }}
+          file_name=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | sed 's/ /-/g')
           echo "export default {
             \"name\": \"${{ fromJson(steps.parse.outputs.payload)['Name'] }}\",
             \"keywords\": \"${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}\",
             \"svg\": \"${{ steps.optimize_svg.outputs.svg_min }}\",
-          } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${{ join(fromJson(steps.parse.outputs.payload)['Name'],'-') }}.ts
+          } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
       - name: Commit & Push
         uses: EndBug/add-and-commit@v9
+        id: commit
         with:
           add: ${{ env.ICONS_FOLDER }}
           new_branch: new-icons
@@ -108,7 +110,7 @@ jobs:
             ${{ steps.optimize_svg.outputs.svg_min }}
             ```
 
-            New file: [${{ env.ICONS_FOLDER }}/icon_${{ join(fromJson(steps.parse.outputs.payload)['Name'],'-') }}.ts](https://github.com/onmax/nimiq-icons/blob/main/${{ env.ICONS_FOLDER }}/icon_${{ join(fromJson(steps.parse.outputs.payload)['Name'],'-') }}.ts)
+            See [commit](${{ github.event.repository.html_url }}/commit/${{ steps.commit.outputs.commit_hash }})
           reactions: '+1'
   auto-closing-issue:
     needs: [parse-form]
