@@ -84,10 +84,15 @@ jobs:
       - name: Create ts file
         run: |
           mkdir -p ${{ env.ICONS_FOLDER }}
-          file_name=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | sed 's/ /-/g')
+          name_parsed=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | tr '[:upper:]' '[:lower:]')
+          file_name=$(echo $name_parsed | tr ' ' '-')
+
+          #  Lowercase, split keywords by comma, trim each element and then convert to JSON array.
+          keywords=$(echo ${{ fromJson(steps.parse.outputs.payload)['Keywords'] }} | sed 's/, /", "/g' | sed 's/^/"/' | sed 's/$/"/' | sed 's/^/[/' | sed 's/$/]/'
+
           echo "export default {
-            \"name\": \"${{ fromJson(steps.parse.outputs.payload)['Name'] }}\",
-            \"keywords\": \"${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}\",
+            \"name\": \"$name_parsed\",
+            \"keywords\": $keywords,
             \"svg\": \"${{ steps.optimize_svg.outputs.svg_min }}\",
           } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
       - name: Commit & Push
