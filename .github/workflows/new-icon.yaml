@@ -115,7 +115,7 @@ jobs:
             ${{ steps.optimize_svg.outputs.svg_min }}
             ```
 
-            See [commit](${{ github.event.repository.html_url }}/commit/${{ steps.commit.outputs.commit_hash }})
+            See [commit](${{ github.event.repository.html_url }}/commit/${{ steps.commit.outputs.commit_sha }})
           reactions: '+1'
   auto-closing-issue:
     needs: [parse-form]
