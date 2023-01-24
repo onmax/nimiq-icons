@@ -93,8 +93,10 @@ jobs:
           echo "export default {
             \"name\": \"$name_parsed\",
             \"keywords\": $keywords,
-            \"svg\": \"${{ steps.optimize_svg.outputs.svg_min }}\",
+            \"svg\": \'${{ steps.optimize_svg.outputs.svg_min }}\',
           } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
+
+          cat ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
       - name: Commit & Push
         uses: EndBug/add-and-commit@v9
         id: commit
