@@ -9,8 +9,8 @@ env:
   USERS_WHITELIST: "onmax" # comma separated list of users that can add icons
 
 jobs:
-  trigger:
-    name: Trigger
+  requirements:
+    name: Check requirements
     runs-on: ubuntu-latest
     steps:
       - name: check label
@@ -35,7 +35,7 @@ jobs:
   comment:
     name: Comment on the issue
     runs-on: ubuntu-latest
-    needs: [trigger]
+    needs: [requirements]
     steps:
       - name: Print issue number
         run: echo "Commenting on issue \#${{ github.event.issue.number }}"
@@ -48,9 +48,11 @@ jobs:
   parse-form:
     name: Convert Form Issue to config file
     runs-on: ubuntu-latest
-    needs: [trigger]
+    needs: [requirements]
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: 'new-icons'
       - name: Parse issue
         id: parse
         uses: onmax/issue-form-parser@v1.1
@@ -76,24 +78,28 @@ jobs:
         id: optimize_svg
         run: |
           echo '${{ fromJson(steps.parse.outputs.payload)['SVG'] }}' | sed 's/`//g' | sed 's/html//g' > icon.svg
-          # replace fill and stroke colors with 'currentColor'. Ignore if fill="none" or stroke="none"
           sed -i 's/fill="[^"(none)]*"/fill="currentColor"/g' icon.svg
           sed -i 's/stroke="[^"(none)]*"/stroke="currentColor"/g' icon.svg
           svgo icon.svg -o icon.min.svg
           echo "svg_min=$(cat icon.min.svg)" >> $GITHUB_OUTPUT
+          echo "svg_min=$(cat icon.min.svg)"
       - name: Create ts file
         run: |
           mkdir -p ${{ env.ICONS_FOLDER }}
-          name_parsed=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | tr '[:upper:]' '[:lower:]')
-          file_name=$(echo $name_parsed | tr ' ' '-')
+          name=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | tr '[:upper:]' '[:lower:]')
+          file_name=$(echo $name | tr ' ' '-')
 
           #  Lowercase, split keywords by comma, trim each element and then convert to JSON array.
           keywords=$(echo ${{ fromJson(steps.parse.outputs.payload)['Keywords'] }} | sed 's/, /", "/g' | sed 's/^/"/' | sed 's/$/"/' | sed 's/^/[/' | sed 's/$/]/')
 
+          # replace " with \"
+          svg_min=$(echo '${{ steps.optimize_svg.outputs.svg_min }}')
+          echo "svg_min=$svg_min"
+
           echo "export default {
-            \"name\": \"$name_parsed\",
-            \"keywords\": $keywords,
-            \"svg\": '${{ steps.optimize_svg.outputs.svg_min }}',
+            name: \"$name\",
+            keywords: $keywords,
+            svg: '$svg_min'
           } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
 
           cat ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
