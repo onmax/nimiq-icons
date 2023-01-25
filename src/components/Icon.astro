@@ -20,7 +20,7 @@ const name = Astro.props.name.toLowerCase()
 		aria-expanded='false'
 		class='absolute inset-0 flex h-full w-full cursor-auto items-center justify-center rounded-xl outline-space/20 text-space/80 ring-1 ring-inset ring-space/10'
 	>
-		<span class='transition-transform duration-500 ease-in-out' data-svg>
+		<span class='transition-transform duration-500 ease-in-out min-w-[16px] min-h-[16px]' data-svg>
 			<Fragment set:html={svg} />
 		</span>
 		<span
