@@ -55,7 +55,7 @@ jobs:
           ref: 'new-icons'
       - name: Parse issue
         id: parse
-        uses: onmax/issue-form-parser@v1.1
+        uses: onmax/issue-form-parser@v1.3
         with:
           issue_number: ${{ github.event.issue.number }}
       - name: Show issue form
