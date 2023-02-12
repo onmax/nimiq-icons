@@ -1,76 +1,91 @@
 ---
+import "@fontsource/mulish"
+import "@fontsource/mulish/700.css"
+
 import Icon from "../components/Icon.astro"
 
 const icons = await Astro.glob("/public/icons/*.ts")
 ---
 
-<body class=''>
-	<header class='bg-gradient-to-br bg-space/5'>
-		<div class='mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8'>
-			<h1
-				class='mt-6 text-[1.75rem] font-extrabold leading-9 tracking-tight text-space/90 md:text-4xl'
-			>
-				Nimiq Icons
-			</h1>
+<body class='selection:bg-space/10'>
+	<header class='bg-gradient-to-br bg-snow'>
+		<div class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative overflow-hidden pt-6'>
+			<div class='relative z-10 w-40'>
+				<img src='./logo.png' alt='' />
+			</div>
+			<div class='flex max-w-[37rem] flex-col py-16 lg:pt-12 lg:pb-11 h-96'>
+				<h1
+					class='mt-6 text-2xl font-bold leading-9 tracking-tight text-space/90 md:text-4xl relative z-10'
+				>
+					Elegantly designed, user-friendly icons crafted by Nimiq
+				</h1>
+				<div
+					class='order-first flex items-center justify-center gap-4 text-sm leading-6 text-space/50 lg:justify-start'
+				>
+					<p>{icons.length} icons</p>
+					<svg viewBox='0 0 2 2' aria-hidden='true' class='w-0.5 fill-space/40'>
+						<circle cx='1' cy='1' r='1'></circle>
+					</svg>
+					<p>Made by Nimiq</p>
+				</div>
+				<div class='mt-10 flex justify-center gap-8 lg:justify-start'>
+					<a
+						class='rounded-lg text-space/90 font-semibold transition flex items-center gap-3 leading-6 py-1 px-1.5 hover:bg-slate-900/[0.03] -my-1 -mx-1.5'
+						href='https://github.com/onmax/nimiq-icons/issues/new/choose'
+					>
+						<svg viewBox='0 0 24 24' aria-hidden='true' class='h-6 w-6 fill-space/80'>
+							<path
+								fill-rule='evenodd'
+								clip-rule='evenodd'
+								d='M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z'
+							>
+							</path>
+						</svg>
+						Report Issue
+					</a>
+				</div>
+			</div>
+			<div class='absolute inset-y-0 right-0 h-96 scale-125'>
+				<img src='./cover.png' alt='' class='h-full object-cover scale-125' />
+			</div>
 		</div>
 	</header>
-	<main class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-		<ul
-			class='grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-x-6 gap-y-8 pt-10 pb-16 sm:pt-11 md:pt-12'
-		>
-			{
-				icons.map(({ default: icon }) => (
-					<li>
-						<Icon name={icon.name} svg={icon.svg} />
-					</li>
-				))
-			}
-		</ul>
-
-		<script>
-			const icons = document.querySelectorAll<HTMLButtonElement>("[data-icon]")
-			icons.forEach((icon) => {
-				const svg = icon.querySelector("[data-svg]")?.innerHTML
-				const copy = icon.querySelector("[data-copy]") as HTMLButtonElement
-				const download = icon.querySelector("[data-download]") as HTMLButtonElement
-
-				if (!svg || !copy || !download) return
-
-				copy.addEventListener("click", () => {
-					console.log(svg)
-					navigator.clipboard.writeText(svg)
-					copy.blur()
-
-					// show the data-copied element: set display to initial, opacity to 0, then animate opacity to 1
-					const copied = icon.querySelector("[data-copied]") as HTMLElement
-					if (!copied) return
-					copied.style.display = "initial"
-					copied.style.opacity = "1"
-
-					// force hover and focus style to be removed temporarily
-					// with css
-					copy.classList.add("hidden")
-					download.classList.add("hidden")
-					setTimeout(() => {
-						copy.classList.remove("hidden")
-						download.classList.remove("hidden")
-					}, 2000)
-
-					// hide the data-copied element after 2 seconds
-					setTimeout(() => {
-						copied.style.opacity = "0"
-						setTimeout(() => (copied.style.display = "none"), 200)
-					}, 2000)
-				})
-
-				download.addEventListener("click", () => {
-					const a = document.createElement("a")
-					a.href = `data:image/svg+xml,${encodeURIComponent(svg)}`
-					a.download = `${icon.dataset.icon}-icon.svg`
-					a.click()
-					download.blur()
-				})
-			})
-		</script>
-	</main>
 </body>
+<div class='border-y border-space/10 shadow-sm'>
+	<div class='flex mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 gap-x-4'>
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			fill='none'
+			viewBox='0 0 20 24'
+			class='w-4 text-space/60'
+		>
+			<path stroke='currentColor' stroke-width='2' d='M8.5 17.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z'>
+			</path>
+			<path stroke='currentColor' stroke-linecap='round' stroke-width='2' d='m18.5 20.5-5.05-5.05'>
+			</path>
+		</svg>
+		<input
+			type='text'
+			id='search'
+			class='w-full h-full border-none placeholder:text-space/70 text-sm outline-none ring-0 text-space'
+			placeholder='Search'
+			autocomplete='off'
+		/>
+	</div>
+</div>
+<main class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+	<ul
+		class='grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-x-6 gap-y-8 pt-10 pb-16 sm:pt-11 md:pt-12'
+	>
+		{
+			icons.map(({ default: icon }) => (
+				<li>
+					<Icon name={icon.name} keywords={icon.keywords} svg={icon.svg} />
+				</li>
+			))
+		}
+	</ul>
+
+	<script src='../scripts/search.ts'></script>
+	<script src='../scripts/click-elements.ts'></script>
+</main>

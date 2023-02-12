@@ -55,16 +55,15 @@ jobs:
           ref: 'new-icons'
       - name: Parse issue
         id: parse
-        uses: onmax/issue-form-parser@v1.1
+        uses: onmax/issue-form-parser@v1.3
         with:
           issue_number: ${{ github.event.issue.number }}
       - name: Show issue form
         run: |
           echo 'name=${{ fromJson(steps.parse.outputs.payload)['Name'] }}'
-          echo 'keywords=${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}'
           echo 'svg=${{ fromJson(steps.parse.outputs.payload)['SVG'] }}'
       - name: Check if issue is valid
-        if: ${{ fromJson(steps.parse.outputs.payload)['Name'] == '' || fromJson(steps.parse.outputs.payload)['Keywords'] == '' || fromJson(steps.parse.outputs.payload)['SVG'] == '' }}
+        if: ${{ fromJson(steps.parse.outputs.payload)['Name'] == '' || fromJson(steps.parse.outputs.payload)['SVG'] == '' }}
         run: |
           echo "Issue is not valid"
           exit 1
@@ -83,16 +82,31 @@ jobs:
           svgo icon.svg -o icon.min.svg
           echo "svg_min=$(cat icon.min.svg)" >> $GITHUB_OUTPUT
           echo "svg_min=$(cat icon.min.svg)"
+      - name: Create keywords
+        id: openai
+        uses: onmax/oai-createcompletion-githubaction@v1.0
+        with:
+          model: text-davinci-003
+          prompt: |
+            format('I am going to write you a word o group of words, that is a concept represented in a icon part of an icon library. You have to create a list up to 25 keywords related to that concept that could be used as search terms in a search engine. Users most likely search only one word at the time. Aim to choose words that are both descriptive and creative, and including words that represent both tangible and intangible aspects of the concept. Format your answer as JSON Array array of strings with double quote and characters in lowercase. The concept is "{0}"', ${{ join(fromJson(steps.parse.outputs.payload)['Name']) }})
+          max_tokens: 250
+          temperature: 0.5
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+      - name: Show keywords
+        id: keywords
+        run: |
+          echo 'Name: ${{ join(fromJson(steps.parse.outputs.payload)['Name']) }}'
+          echo 'Keywords: ${{ join(fromJson(steps.openai.outputs.response).texts) }}'
       - name: Create ts file
         run: |
           mkdir -p ${{ env.ICONS_FOLDER }}
           name=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | tr '[:upper:]' '[:lower:]')
           file_name=$(echo $name | tr ' ' '-')
 
-          #  Lowercase, split keywords by comma, trim each element and then convert to JSON array.
-          keywords=$(echo ${{ fromJson(steps.parse.outputs.payload)['Keywords'] }} | sed 's/, /", "/g' | sed 's/^/"/' | sed 's/$/"/' | sed 's/^/[/' | sed 's/$/]/')
+          # replace " with \" and remove new 
+          keywords=$(echo '${{ join(fromJson(steps.openai.outputs.response).texts) }}' | tr -d '\n' | tr -d '\t' | tr -d '  ') 
+          echo "keywords=$keywords"
 
-          # replace " with \"
           svg_min=$(echo '${{ steps.optimize_svg.outputs.svg_min }}')
           echo "svg_min=$svg_min"
 
@@ -117,7 +131,7 @@ jobs:
           body: |
             ### ${{ fromJson(steps.parse.outputs.payload)['Name'] }}
             
-            <sub>${{ fromJson(steps.parse.outputs.payload)['Keywords'] }}</sub>
+            <sub>${{ join(fromJson(steps.openai.outputs.response).texts) }}</sub>
 
             ```html
             ${{ steps.optimize_svg.outputs.svg_min }}
