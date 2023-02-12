@@ -9,18 +9,36 @@ const icons = await Astro.glob("/public/icons/*.ts")
 
 <body class='selection:bg-space/10'>
 	<header class='bg-gradient-to-br bg-snow'>
-		<div class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative overflow-hidden pt-6'>
-			<div class='relative z-10 w-40'>
-				<img src='./logo.png' alt='' />
+		<div class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative overflow-hidden'>
+			<div
+				class='relative z-10 flex justify-between w-full items-center from-snow to-transparent bg-gradient-to-b pt-6'
+			>
+				<img class='h-7' src='./logo.png' alt='' />
+				<div class='flex-1'></div>
+				<a
+					class='rounded-lg text-space/90 font-semibold transition flex items-center gap-3 leading-6 py-1 px-1.5 -my-1 -mx-1.5 hover:bg-space/5'
+					href='https://github.com/onmax/nimiq-icons/issues/new/choose'
+					target='_blank'
+				>
+					<svg viewBox='0 0 24 24' aria-hidden='true' class='h-6 w-6 fill-space/80'>
+						<path
+							fill-rule='evenodd'
+							clip-rule='evenodd'
+							d='M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z'
+						>
+						</path>
+					</svg>
+					<span class='whitespace-nowrap'>Suggestions</span>
+				</a>
 			</div>
 			<div class='flex max-w-[37rem] flex-col py-16 lg:pt-12 lg:pb-11 h-96'>
 				<h1
-					class='mt-6 text-2xl font-bold leading-9 tracking-tight text-space/90 md:text-4xl relative z-10'
+					class='mb-6 text-2xl font-bold leading-9 tracking-tight text-space/90 md:text-4xl relative z-10'
 				>
 					Elegantly designed, user-friendly icons crafted by Nimiq
 				</h1>
 				<div
-					class='order-first flex items-center justify-center gap-4 text-sm leading-6 text-space/50 lg:justify-start'
+					class='flex items-center justify-center gap-4 text-sm leading-6 text-space/50 lg:justify-start'
 				>
 					<p>{icons.length} icons</p>
 					<svg viewBox='0 0 2 2' aria-hidden='true' class='w-0.5 fill-space/40'>
@@ -28,51 +46,81 @@ const icons = await Astro.glob("/public/icons/*.ts")
 					</svg>
 					<p>Made by Nimiq</p>
 				</div>
-				<div class='mt-10 flex justify-center gap-8 lg:justify-start'>
-					<a
-						class='rounded-lg text-space/90 font-semibold transition flex items-center gap-3 leading-6 py-1 px-1.5 hover:bg-slate-900/[0.03] -my-1 -mx-1.5'
-						href='https://github.com/onmax/nimiq-icons/issues/new/choose'
-					>
-						<svg viewBox='0 0 24 24' aria-hidden='true' class='h-6 w-6 fill-space/80'>
-							<path
-								fill-rule='evenodd'
-								clip-rule='evenodd'
-								d='M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z'
-							>
-							</path>
-						</svg>
-						Report Issue
-					</a>
+				<div class='mt-10 flex justify-center gap-8 lg:justify-start z-10'>
+					<div class='flex flex-col w-full'>
+						<input
+							type='text'
+							id='search'
+							class='w-full h-full border-none px-4 pt-2 pb-1.5 rounded-xl outline-none ring-1 ring-space/[0.15] text-space hover:ring-space/30 hover:placeholder-space/60 focus:ring-space/30 focus:placeholder-space/60 focus:text-space'
+							placeholder='Search something'
+							autocomplete='off'
+						/>
+						<div>
+							<div class='flex flex-wrap gap-2 mt-2 mx-4'>
+								<input id='all' class='sr-only peer/all' type='radio' value='all' name='tag' />
+								<label
+									for='all'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/all:bg-space peer-checked/all:text-white peer-checked/all:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+								>
+									all
+								</label>
+								<input
+									id='small'
+									class='sr-only peer/small'
+									type='radio'
+									value='small'
+									name='tag'
+								/>
+								<label
+									for='small'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/small:bg-space peer-checked/small:text-white peer-checked/small:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+								>
+									small
+								</label>
+								<input
+									id='large'
+									class='sr-only peer/large'
+									type='radio'
+									value='large'
+									name='tag'
+								/>
+								<label
+									for='large'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/large:bg-space peer-checked/large:text-white peer-checked/large:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+								>
+									large
+								</label>
+								<input id='logo' class='sr-only peer/logo' type='radio' value='logo' name='tag' />
+								<label
+									for='logo'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/logo:bg-space peer-checked/logo:text-white peer-checked/logo:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+								>
+									logo
+								</label>
+								<input
+									id='countries'
+									class='sr-only peer/countries'
+									type='radio'
+									value='countries'
+									name='tag'
+								/>
+								<label
+									for='countries'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/countries:bg-space peer-checked/countries:text-white peer-checked/countries:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+								>
+									countries
+								</label>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class='absolute inset-y-0 right-0 h-96 scale-125'>
+			<div class='absolute inset-y-0 right-0 h-96 scale-125 top-8'>
 				<img src='./cover.png' alt='' class='h-full object-cover scale-125' />
 			</div>
 		</div>
 	</header>
 </body>
-<div class='border-y border-space/10 shadow-sm'>
-	<div class='flex mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 gap-x-4'>
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			fill='none'
-			viewBox='0 0 20 24'
-			class='w-4 text-space/60'
-		>
-			<path stroke='currentColor' stroke-width='2' d='M8.5 17.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z'>
-			</path>
-			<path stroke='currentColor' stroke-linecap='round' stroke-width='2' d='m18.5 20.5-5.05-5.05'>
-			</path>
-		</svg>
-		<input
-			type='text'
-			id='search'
-			class='w-full h-full border-none placeholder:text-space/70 text-sm outline-none ring-0 text-space'
-			placeholder='Search'
-			autocomplete='off'
-		/>
-	</div>
-</div>
 <main class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
 	<ul
 		class='grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-x-6 gap-y-8 pt-10 pb-16 sm:pt-11 md:pt-12'
