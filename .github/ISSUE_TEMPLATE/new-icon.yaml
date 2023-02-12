@@ -16,14 +16,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: keywords
-    attributes:
-      label: Keywords
-      description: Please list any keywords that describe the icon. This will help people find the icon in the library. Comma separated.
-      placeholder: arrow, down, direction
-    validations:
-      required: true
-  - type: textarea
     id: svg
     attributes:
       label: SVG
