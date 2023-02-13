@@ -6,7 +6,7 @@ on:
 
 env:
   ICONS_FOLDER: "./public/icons"
-  USERS_WHITELIST: "onmax" # comma separated list of users that can add icons
+  USERS_WHITELIST: "onmax,KwadwoOvernice" # comma separated list of users that can add icons
 
 jobs:
   requirements:
