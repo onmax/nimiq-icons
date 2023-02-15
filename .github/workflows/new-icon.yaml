@@ -6,7 +6,7 @@ on:
 
 env:
   ICONS_FOLDER: "./public/icons"
-  USERS_WHITELIST: "onmax" # comma separated list of users that can add icons
+  USERS_WHITELIST: "onmax,KwadwoOvernice" # comma separated list of users that can add icons
 
 jobs:
   requirements:
@@ -88,7 +88,7 @@ jobs:
         with:
           model: text-davinci-003
           prompt: |
-            format('I am going to write you a word o group of words, that is a concept represented in a icon part of an icon library. You have to create a list up to 25 keywords related to that concept that could be used as search terms in a search engine. Users most likely search only one word at the time. Aim to choose words that are both descriptive and creative, and including words that represent both tangible and intangible aspects of the concept. Format your answer as JSON Array array of strings with double quote and characters in lowercase. The concept is "{0}"', ${{ join(fromJson(steps.parse.outputs.payload)['Name']) }})
+            format('I am going to write you a word o group of words, that is a concept represented in a icon part of an icon library. You have to create a list up to 25 keywords related to that concept that could be used as search terms in a search engine. Users most likely search only one word at the time. Aim to choose words that are both descriptive and creative, and including words that represent both tangible and intangible aspects of the concept. Format your answer as JSON Array array of strings with double quote and characters in lowercase. Don't add the variable name. An example of output is: ["term", "term", "term"]. The concept is "{0}"', ${{ join(fromJson(steps.parse.outputs.payload)['Name']) }})
           max_tokens: 250
           temperature: 0.5
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
