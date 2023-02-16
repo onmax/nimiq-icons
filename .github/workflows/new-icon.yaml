@@ -114,7 +114,7 @@ jobs:
             name: \"$name\",
             keywords: $keywords,
             svg: '$svg_min'
-          } as Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
+          } satisfies Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
 
           cat ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
       - name: Commit & Push

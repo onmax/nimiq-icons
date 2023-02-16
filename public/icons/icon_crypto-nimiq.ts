@@ -16,5 +16,6 @@ export default {
 				<path fill="#fff" d="M0 0h24v24H0z" />
 			</clipPath>
 		</defs>
-	</svg>`
-} as Icon;
+	</svg>`,
+	"category": 'Logo'
+} satisfies Icon;

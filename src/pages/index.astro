@@ -8,7 +8,7 @@ const icons = await Astro.glob("/public/icons/*.ts")
 ---
 
 <body class='selection:bg-space/10'>
-	<header class='bg-gradient-to-br bg-snow'>
+	<header class='bg-gradient-to-br bg-snow relative'>
 		<div class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative overflow-hidden'>
 			<div
 				class='relative z-10 flex justify-between w-full items-center from-snow to-transparent bg-gradient-to-b pt-6'
@@ -31,14 +31,14 @@ const icons = await Astro.glob("/public/icons/*.ts")
 					<span class='whitespace-nowrap'>Suggestions</span>
 				</a>
 			</div>
-			<div class='flex max-w-[37rem] flex-col py-16 lg:pt-12 lg:pb-11 h-96'>
+			<div class='flex max-w-[37rem] flex-col py-16 lg:pt-12 lg:pb-11 h-96 z-10'>
 				<h1
 					class='mb-6 text-2xl font-bold leading-9 tracking-tight text-space/90 md:text-4xl relative z-10'
 				>
-					Elegantly designed, user-friendly icons crafted by Nimiq
+					Elegantly designed, user-friendly <span style="background: -webkit-linear-gradient(30deg, #E9B213 60%, #E5A212 100%); -webkit-text-fill-color: transparent; -webkit-background-clip: text">icons</span> crafted by <span style="background: -webkit-linear-gradient(30deg, #E9B213 60%, #E5A212 100%); -webkit-text-fill-color: transparent; -webkit-background-clip: text">Nimiq</span>
 				</h1>
 				<div
-					class='flex items-center justify-center gap-4 text-sm leading-6 text-space/50 lg:justify-start'
+					class='flex items-center justify-center gap-4 text-sm leading-6 text-space/50 lg:justify-start z-10'
 				>
 					<p>{icons.length} icons</p>
 					<svg viewBox='0 0 2 2' aria-hidden='true' class='w-0.5 fill-space/40'>
@@ -56,11 +56,11 @@ const icons = await Astro.glob("/public/icons/*.ts")
 							autocomplete='off'
 						/>
 						<div>
-							<div class='flex flex-wrap gap-2 mt-2 mx-4'>
-								<input id='all' class='sr-only peer/all' type='radio' value='all' name='tag' />
+							<div class='flex flex-wrap gap-2 mt-2 mx-2.5'>
+								<input id='all' class='sr-only peer/all' type='radio' value='all' name='tag' checked />
 								<label
 									for='all'
-									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/all:bg-space peer-checked/all:text-white peer-checked/all:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/all:bg-space/[0.15] peer-checked/all:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
 								>
 									all
 								</label>
@@ -73,7 +73,7 @@ const icons = await Astro.glob("/public/icons/*.ts")
 								/>
 								<label
 									for='small'
-									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/small:bg-space peer-checked/small:text-white peer-checked/small:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/small:bg-space/[0.15] peer-checked/small:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
 								>
 									small
 								</label>
@@ -86,53 +86,60 @@ const icons = await Astro.glob("/public/icons/*.ts")
 								/>
 								<label
 									for='large'
-									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/large:bg-space peer-checked/large:text-white peer-checked/large:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/large:bg-space/[0.15] peer-checked/large:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
 								>
 									large
 								</label>
 								<input id='logo' class='sr-only peer/logo' type='radio' value='logo' name='tag' />
 								<label
 									for='logo'
-									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/logo:bg-space peer-checked/logo:text-white peer-checked/logo:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/logo:bg-space/[0.15] peer-checked/logo:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
 								>
 									logo
 								</label>
 								<input
-									id='countries'
-									class='sr-only peer/countries'
+									id='country'
+									class='sr-only peer/country'
 									type='radio'
-									value='countries'
+									value='country'
 									name='tag'
 								/>
 								<label
-									for='countries'
-									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/countries:bg-space peer-checked/countries:text-white peer-checked/countries:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
+									for='country'
+									class='text-sm py-1 px-2 w-max text-space/80 hover:text-space/90 hover:bg-space/10 rounded-md text-left peer-checked/country:bg-space/[0.15] peer-checked/country:ring-0 cursor-pointer flex gap-x-2 transition-colors items-center'
 								>
-									countries
+									country
 								</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class='absolute inset-y-0 right-0 h-96 scale-125 top-8'>
-				<img src='./cover.png' alt='' class='h-full object-cover scale-125' />
+			<div class='absolute inset-y-0 right-0 h-96 top-8'>
+				<img src='./cover.png' alt='' class='h-full object-cover' />
 			</div>
+			
 		</div>
+		<div class="absolute inset-x-0 h-10 bg-gradient-to-b from-snow to-white bottom-0"></div>
 	</header>
 </body>
 <main class='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
 	<ul
 		class='grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-x-6 gap-y-8 pt-10 pb-16 sm:pt-11 md:pt-12'
+		id="icons-list"
 	>
 		{
 			icons.map(({ default: icon }) => (
 				<li>
-					<Icon name={icon.name} keywords={icon.keywords} svg={icon.svg} />
+					<Icon name={icon.name} keywords={icon.keywords} svg={icon.svg} category={icon.category} />
 				</li>
 			))
 		}
 	</ul>
+
+	<p class="text-space/80" id="no-icons">
+		There are no icons that match your search. Please try again with a different search term.
+	</p>
 
 	<script src='../scripts/search.ts'></script>
 	<script src='../scripts/click-elements.ts'></script>
