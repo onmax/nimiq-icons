@@ -3,13 +3,31 @@ export interface Props {
 	name: Icon["name"]
 	keywords: Icon["keywords"]
 	svg: Icon["svg"]
+	category: Icon["category"]
 }
 const svg = Astro.props.svg
 const name = Astro.props.name.toLowerCase()
 const keywords = Astro.props.keywords.join(",")
+const category = Astro.props.category
+
+let size = ''
+switch (category) {
+	case "Small":
+		size = "width: 18px; height: 18px;"
+		break
+	case "Large":
+		size = "width: 32px; height: 32px;"
+		break
+	case "Logo":
+		size = "width: 24px; height: 24px;"
+		break
+	default:
+		size = "width: 24px; height: 24px;"
+		break
+}
 ---
 
-<div data-icon={name} data-keywords={keywords}>
+<div data-icon={name} data-keywords={keywords} data-category={category.toLowerCase()}>
 	<div
 		class='relative h-[8.5rem] gruop [--opacity:0] hover:[--opacity:100] focus-within:[--opacity:100]'
 	>
@@ -20,12 +38,9 @@ const keywords = Astro.props.keywords.join(",")
 			aria-haspopup='true'
 			aria-controls={name}
 			aria-expanded='false'
-			class='absolute inset-0 flex h-full w-full cursor-auto items-center justify-center rounded-xl outline-space/20 text-space/80 ring-1 ring-inset ring-space/10'
+			class='absolute inset-0 flex h-full w-full cursor-auto items-center justify-center rounded-xl outline-space/20 text-space ring-1 ring-inset ring-space/10'
 		>
-			<span
-				class='transition-transform duration-500 ease-in-out min-w-[16px] min-h-[16px]'
-				data-svg
-			>
+			<span class='transition-transform duration-500 ease-in-out [&>svg]:w-full [&>svg]:h-full' data-svg style={size}>
 				<Fragment set:html={svg} />
 			</span>
 			<span

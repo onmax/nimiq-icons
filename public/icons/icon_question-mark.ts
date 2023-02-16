@@ -17,5 +17,6 @@ export default {
         stroke-linecap="round"
         stroke-linejoin="round"
     />
-</svg>`
-} as Icon;
+</svg>`,
+"category": 'Large'
+} satisfies Icon;
