@@ -10,6 +10,16 @@ const name = Astro.props.name.toLowerCase()
 const keywords = Astro.props.keywords.join(",")
 const category = Astro.props.category
 
+if (typeof svg === "undefined" || svg === null) {
+	throw new Error(`SVG for ${name} is undefined`)
+} else if (typeof name === "undefined" || name === null) {
+	throw new Error(`Name for ${name} is undefined`)
+} else if (typeof keywords === "undefined" || keywords === null) {
+	throw new Error(`Keywords for ${name} is undefined`)
+} else if (typeof category === "undefined" || category === null) {
+	throw new Error(`Category for ${name} is undefined`)
+}
+
 let size = ''
 switch (category) {
 	case "Small":
