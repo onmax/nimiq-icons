@@ -18,5 +18,5 @@ export default {
         stroke-linejoin="round"
     />
 </svg>`,
-"category": 'Large'
+  category: 'Large'
 } satisfies Icon;
