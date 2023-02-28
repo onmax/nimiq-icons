@@ -29,17 +29,12 @@ let selectedCategory = 'all'
 const showElement = (element: HTMLElement) => element.style.removeProperty("display")
 const hideElement = (element: HTMLElement) => element.style.display = "none"
 
+let query = ''
 
 search.addEventListener("input", (event) => {
     resetHiddenElements()
-    const query = (event.target as HTMLInputElement).value
-    icons.forEach(({ element, keywords, category: elementCategory }) => {
-        const shouldShow =
-            keywords.some((keyword) => keyword.toLowerCase().includes(query.toLowerCase()))
-            && (elementCategory === 'all' || elementCategory === selectedCategory)
-        !shouldShow && hiddenElements++
-        shouldShow ? showElement(element) : hideElement(element)
-    })
+    query = (event.target as HTMLInputElement).value
+    filterIcons(query);
     hiddenElements === icons.length ? showElement(noIconsText) : hideElement(noIconsText)
     hiddenElements !== icons.length ? showElement(iconsList) : hideElement(iconsList)
 })
@@ -50,6 +45,8 @@ tags.forEach((tag) => {
 
         const { id: inputCategory, checked } = event.target as HTMLInputElement
         selectedCategory = inputCategory
+        filterIcons(query);
+
         icons.forEach(({ element, category: elementCategory }) => {
             if (checked && inputCategory === "all") {
                 showElement(element)
@@ -64,3 +61,14 @@ tags.forEach((tag) => {
         hiddenElements !== icons.length ? showElement(iconsList) : hideElement(iconsList)
     })
 })
+
+hideElement(noIconsText)
+
+function filterIcons(query: string) {
+    icons.forEach(({ element, keywords, category: elementCategory }) => {
+        const shouldShow = keywords.some((keyword) => keyword.toLowerCase().includes(query.toLowerCase()))
+            && (selectedCategory === 'all' || elementCategory === selectedCategory);
+        !shouldShow && hiddenElements++;
+        shouldShow ? showElement(element) : hideElement(element);
+    });
+}
