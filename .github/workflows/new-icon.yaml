@@ -62,8 +62,9 @@ jobs:
         run: |
           echo 'name=${{ fromJson(steps.parse.outputs.payload)['Name'] }}'
           echo 'svg=${{ fromJson(steps.parse.outputs.payload)['SVG'] }}'
+          echo 'category=${{ fromJson(steps.parse.outputs.payload)['category'] }}'
       - name: Check if issue is valid
-        if: ${{ fromJson(steps.parse.outputs.payload)['Name'] == '' || fromJson(steps.parse.outputs.payload)['SVG'] == '' }}
+        if: ${{ fromJson(steps.parse.outputs.payload)['Name'] == '' || fromJson(steps.parse.outputs.payload)['SVG'] == '' || fromJson(steps.parse.outputs.payload)['category'] == '' }}
         run: |
           echo "Issue is not valid"
           exit 1
@@ -103,6 +104,14 @@ jobs:
           name=$(echo ${{ fromJson(steps.parse.outputs.payload)['Name'] }} | tr '[:upper:]' '[:lower:]')
           file_name=$(echo $name | tr ' ' '-')
 
+          category=$(echo ${{ fromJson(steps.parse.outputs.payload)['category'] }})
+
+          array=(Small Large Logo Country)
+          if [[ ! " ${array[@]} " =~ " ${category} " ]]; then
+            echo "Category $category not valid"
+            exit 1
+          fi
+
           # replace " with \" and remove new 
           keywords=$(echo '${{ join(fromJson(steps.openai.outputs.response).texts) }}' | tr -d '\n' | tr -d '\t' | tr -d '  ') 
           echo "keywords=$keywords"
@@ -113,7 +122,8 @@ jobs:
           echo "export default {
             name: \"$name\",
             keywords: $keywords,
-            svg: '$svg_min'
+            svg: '$svg_min',
+            category: \"$category\",
           } satisfies Icon;" > ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
 
           cat ${{ env.ICONS_FOLDER }}/icon_${file_name}.ts
@@ -131,7 +141,9 @@ jobs:
           body: |
             ### ${{ fromJson(steps.parse.outputs.payload)['Name'] }}
             
-            <sub>${{ join(fromJson(steps.openai.outputs.response).texts) }}</sub>
+            ${{ join(fromJson(steps.openai.outputs.response).texts) }}
+
+            Category: ${{ fromJson(steps.parse.outputs.payload)['category'] }}
 
             ```html
             ${{ steps.optimize_svg.outputs.svg_min }}

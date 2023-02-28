@@ -22,8 +22,8 @@ body:
       description: Select the category that best fits the icon
       multiple: true
       options:
-        - Small icon
-        - Large icon
+        - Small
+        - Large
         - Logo
         - Country
     validations:
