@@ -1,6 +1,6 @@
 export default {
   name: "shrink",
   keywords: ["shrink", "reduce", "decrease", "lower", "compress", "contract", "minimize", "narrow", "simplify", "shorten", "decrease size", "reduce size", "shrink icon", "shrink button", "shrink symbol", "shrink down", "shrink right", "shrink left", "shrink up", "shrink more", "shrink less", "collapse", "contract", "condense", "constrict"],
-  svg: '<svg  viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 19 5-5M4.75 13.75h5.5v5.5M19 5l-5 5M19.25 10.25h-5.5v-5.5"/></svg>',
+  svg: '<svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m2 16 5-5m-5.25-.25h5.5v5.5M16 2l-5 5m5.25.25h-5.5v-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 	"category": 'Small'
 } satisfies Icon;
