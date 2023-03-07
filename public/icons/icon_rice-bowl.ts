@@ -1,0 +1,6 @@
+export default {
+  name: "rice bowl",
+  keywords: ["ricebowl","rice","bowl","asianfood","dish","cuisine","food","dining","eating","bowlfood","ricedish","ricemeal","asiancuisine","asiandish","dinner","lunch","stirfry","noodles","takeout","takeaway","take-out","take-away","oriental","orientalfood","orientaldish","orientalcuisine"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 43 43"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" clip-path="url(#a)"><path d="M40.19 22.37v-.001c.458-.017.849.373.849.848l-.017.017c-.493 9.71-9.031 14.378-19.5 14.378-10.468 0-19.012-4.685-19.504-14.395L2 23.2a.856.856 0 0 1 .814-.9c0-.016.017-.016.017-.016l37.358.086Z"/><path d="m29.186 36.697 1.24 3.174a.84.84 0 0 1-.493 1.087.987.987 0 0 1-.323.05h-16.2v0a.866.866 0 0 1-.866-.85c-.017-.118.017-.22.05-.322l1.247-3.191M35.123 2l-4.244 16.975M41.06 2l-7.638 16.975m4.128-1.409a4.232 4.232 0 0 1 2.666 3.939m-36.501.865c-.017-3.75 3.038-6.806 6.773-6.806h-.017c.9-.034 1.8.152 2.631.526h-.017a7.626 7.626 0 0 1 8.709-6.4 7.606 7.606 0 0 1 6.467 7.554"/></g><defs><clipPath id="a"><path fill="currentColor" d="M0 0h43v43H0z"/></clipPath></defs></svg>',
+  category: "Small",
+} satisfies Icon;
