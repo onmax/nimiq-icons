@@ -1,0 +1,6 @@
+export default {
+  name: "happy shopping bag",
+  keywords: ["happyshopping","shoppingbag","shopping","purchase","buy","store","bag","retail","shop","consumerism","buying","bargain","sales","market","clothing","outfit","style","fashion","accessories","jewelry","shoes","apparel","brand","merchandise","aisle","checkout"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 35 42"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.175 25.346h-.017c.226-.017.434.191.434.417a.453.453 0 0 1-.434.434.47.47 0 0 1-.452-.434.431.431 0 0 1 .417-.452m14.824.035h-.018c.226-.017.435.191.435.417a.454.454 0 0 1-.435.434.467.467 0 0 1-.45-.434.43.43 0 0 1 .416-.452m-.834 5.248v-.017c-2.416 3.58-7.264 4.553-10.86 2.155a7.856 7.856 0 0 1-2.174-2.172M9.742 16.657v-7.82A7.81 7.81 0 0 1 17.545 1c4.31-.017 7.82 3.493 7.82 7.802v7.82"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m34 35.772-1.564-22.59-.017-.018a1.863 1.863 0 0 0-1.86-1.737H4.493v-.002c-.99 0-1.807.747-1.86 1.738L1.07 35.753c-.05.578-.073 1.158-.07 1.738a3.46 3.46 0 0 0 3.476 3.458h26.066l-.018-.002A3.485 3.485 0 0 0 34 37.472c0-.591-.017-1.164-.07-1.755l.07.055Z"/></svg>',
+  category: "Small",
+} satisfies Icon;
