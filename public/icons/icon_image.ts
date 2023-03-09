@@ -1,0 +1,6 @@
+export default {
+  name: "image",
+  keywords: ["icon","library","image","graphic","illustration","design","vector","pictogram","symbol","artwork","shape","sign","logo","picture","visual","art","style","collection","artistic","artsy","drawing","pattern","creative","unique","illustrative"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 84 84"><g fill="currentColor" clip-path="url(#a)"><path d="M33.754 40.602a6.849 6.849 0 1 0 0-13.697 6.849 6.849 0 0 0 0 13.697Z" opacity=".4"/><path d="M47.242 66.534 34.25 52.094a2.315 2.315 0 0 0-.814-.644 2.192 2.192 0 0 0-1.983.055c-.305.165-.572.4-.78.689L7.444 87.76a2.554 2.554 0 0 0-.224 2.547c.19.404.483.745.845.983.363.24.781.366 1.209.368H81.9a2.239 2.239 0 0 0 1.618-.718 2.506 2.506 0 0 0 .669-1.715V67.032c0-.484-14.794-25.351-14.794-25.351a2.338 2.338 0 0 0-.824-.792 2.189 2.189 0 0 0-1.08-.287 2.19 2.19 0 0 0-1.079.287c-.332.188-.615.46-.824.792L50.792 66.32a2.356 2.356 0 0 1-.76.697 2.2 2.2 0 0 1-1.96.118 2.313 2.313 0 0 1-.83-.602Z"/></g><rect width="79.696" height="79.696" x="2" y="2" stroke="currentColor" stroke-width="4" rx="7.471"/><defs><clipPath id="a"><rect width="79.696" height="79.696" x="2" y="2" fill="currentColor" rx="7.471"/></clipPath></defs></svg>',
+  category: "Small",
+} satisfies Icon;

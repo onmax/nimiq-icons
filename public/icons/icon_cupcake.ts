@@ -1,0 +1,6 @@
+export default {
+  name: "cupcake",
+  keywords: ["cupcake","bakery","dessert","cake","icing","sweet","sugar","frosting","chocolate","vanilla","sprinkles","icingsugar","icingdecorations","baking","bakedgoods","pastry","icingbag","icingnozzle","bakingtin","buttercream","icingcolors","icingflowers","icingribbon","icingtips","cupcaketoppers","cupcakecases"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 44 50"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22.057 7.567a5.529 5.529 0 0 1 6.25-6.251M14.91 32.213l2.458 15.98M29.2 32.213l-2.458 15.98m10.461-13.318L34.82 45.646a3.257 3.257 0 0 1-3.173 2.546H12.479a3.244 3.244 0 0 1-3.173-2.546L6.902 34.871"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.859 14.689C8.446 16.198 1.74 20.483 1.74 27.879a7.293 7.293 0 0 0 13.813 3.286 7.248 7.248 0 0 0 2.677 2.939 7.253 7.253 0 0 0 10.323-2.939 7.294 7.294 0 0 0 13.813-3.286c0-7.392-6.706-11.679-14.123-13.19"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22.055 20.067a6.25 6.25 0 1 0 0-12.5 6.25 6.25 0 0 0 0 12.5Z"/></svg>',
+  category: "Small",
+} satisfies Icon;

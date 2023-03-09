@@ -1,0 +1,6 @@
+export default {
+  name: "baby romper",
+  keywords: ["babyromper","infantclothing","onesie","babywear","bodysuit","jumpsuit","outfit","clothing","garment","babies","infants","newborn","toddler","cute","adorable","comfy","comfortable","soft","stretchy","fashionable","stylish","snug","warm","cotton","elastic","snapclosure"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 53 53"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M27.756 29.677a1.05 1.05 0 0 1-1.516 0l-4.354-4.53a3.01 3.01 0 0 1 1.652-5.105 3.032 3.032 0 0 1 2.62.842l.84.837.84-.837a3.024 3.024 0 0 1 2.622-.845 3.028 3.028 0 0 1 2.22 1.628 3.006 3.006 0 0 1-.566 3.48l-4.358 4.53Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m49.792 6.472-9.17-4.378a1.065 1.065 0 0 0-1.278.317A15.736 15.736 0 0 1 26.501 8.39a15.736 15.736 0 0 1-12.838-5.98 1.065 1.065 0 0 0-1.278-.317L3.21 6.472a2.13 2.13 0 0 0-1.066 2.695l2.412 6.17a2.13 2.13 0 0 0 2.286 1.336l5.81-.827V38.27a1.065 1.065 0 0 0 .959 1.065 9.587 9.587 0 0 1 8.628 9.535A2.13 2.13 0 0 0 24.37 51h4.262a2.13 2.13 0 0 0 2.13-2.13 9.587 9.587 0 0 1 8.629-9.541 1.065 1.065 0 0 0 .959-1.065V15.846l5.82.827a2.13 2.13 0 0 0 2.286-1.336l2.401-6.178a2.13 2.13 0 0 0-1.065-2.687Z"/></svg>',
+  category: "Small",
+} satisfies Icon;
