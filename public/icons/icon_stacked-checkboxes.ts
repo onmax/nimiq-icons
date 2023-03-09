@@ -1,0 +1,6 @@
+export default {
+  name: "stacked checkboxes",
+  keywords: ["checkbox","stackedcheckbox","checkboxgroup","checkboxselection","checkboxes","formelement","interactiveelement","checkmark","multiplechoice","selectoption","tickbox","tickmark","choiceselection","formcontrol","checkboxicon","checkboxsymbol","checkboxdesign","checkboxfield","checkboxgrid","checkboxinput","checkboxlist","checkboxselectionfield","checkboxtick","checkboxvector","clickablecheckbox","multipleselection","tickablecheckbox"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64"><g clip-path="url(#a)"><path fill="currentColor" fill-opacity=".4" d="M28 0a3 3 0 0 0-3 3v8h23a6 6 0 0 1 6 6v17h7a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H28Z"/><path fill="currentColor" fill-opacity=".4" d="M15 14a3 3 0 0 0-3 3v11.5h25.5a3 3 0 0 1 3 3V48H48a3 3 0 0 0 3-3V17a3 3 0 0 0-3-3H15Z"/><path stroke="currentColor" stroke-width="3" d="M1.5 31.5a3 3 0 0 1 3-3h33a3 3 0 0 1 3 3v28a3 3 0 0 1-3 3h-33a3 3 0 0 1-3-3v-28Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m30 40-8.4 11.1a2.2 2.2 0 0 1-3.3.3L14 47"/></g><defs><clipPath id="a"><path fill="currentColor" d="M0 0h64v64H0z"/></clipPath></defs></svg>',
+  category: "Large",
+} satisfies Icon;
