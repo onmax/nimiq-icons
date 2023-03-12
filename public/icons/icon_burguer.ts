@@ -1,6 +1,12 @@
 export default {
 	name: "burger",
 	keywords: ["burger", "hamburger", "fast food", "snack", "meal", "restaurant", "food", "burger icon"],
-	svg: `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" > <path d="M24.333 15.167V13.5a5 5 0 0 0-5-5h-6.667a5 5 0 0 0-5 5v1.667" stroke="currentColor" stroke- width="1.5" stroke - linecap="round" stroke - linejoin="round" /> <path d="M24.333 15.167H7.667c-.92 0-1.667.746-1.667 1.666V18.5c0 .92.746 1.667 1.667 1.667h16.666c.92 0 1.667-.746 1.667-1.667v-1.667c0-.92-.746-1.666-1.667-1.666ZM24.333 20.167v1.666a1.666 1.666 0 0 1-1.667 1.667H9.333a1.667 1.667 0 0 1-1.667-1.667v-1.666" stroke="currentColor" stroke - width="1.5" stroke - linecap="round" stroke - linejoin="round" /> <circle cx="13.5" cy="12" r="1" fill="currentColor" /> <circle cx="18.5" cy="12" r="1" fill="currentColor" /></svg>`,
-	"category": 'Large'
+	svg: `<svg viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M19.333 7.167V5.5C19.333 4.17392 18.8062 2.90215 17.8685 1.96447C16.9309 1.02678 15.6591 0.5 14.333 0.5H7.66602C6.33993 0.5 5.06816 1.02678 4.13048 1.96447C3.1928 2.90215 2.66602 4.17392 2.66602 5.5V7.167" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+	<path d="M2.667 12.167C1.746 12.167 1 11.42 1 10.5V8.83299C1 7.91299 1.747 7.16699 2.667 7.16699H19.333C20.254 7.16699 21 7.91299 21 8.83299V10.5C21 11.421 20.253 12.167 19.333 12.167M2.667 12.167H19.333M2.667 12.167L2.666 13.833C2.666 14.2751 2.84163 14.6991 3.15425 15.0117C3.46688 15.3244 3.89088 15.5 4.333 15.5H17.666C17.885 15.5001 18.1018 15.4571 18.3041 15.3734C18.5064 15.2896 18.6902 15.1669 18.845 15.012C18.9999 14.8572 19.1226 14.6734 19.2064 14.4711C19.2901 14.2688 19.3331 14.0519 19.333 13.833V12.167" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+	<path d="M8.5 5C9.05228 5 9.5 4.55228 9.5 4C9.5 3.44772 9.05228 3 8.5 3C7.94772 3 7.5 3.44772 7.5 4C7.5 4.55228 7.94772 5 8.5 5Z" fill="black"/>
+	<path d="M13.5 5C14.0523 5 14.5 4.55228 14.5 4C14.5 3.44772 14.0523 3 13.5 3C12.9477 3 12.5 3.44772 12.5 4C12.5 4.55228 12.9477 5 13.5 5Z" fill="black"/>
+	</svg>
+	`,
+	"category": 'Small'
 } satisfies Icon;
