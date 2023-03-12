@@ -80,7 +80,31 @@ jobs:
           echo '${{ fromJson(steps.parse.outputs.payload)['SVG'] }}' | sed 's/`//g' | sed 's/html//g' > icon.svg
           sed -i 's/fill="[^"(none)]*"/fill="currentColor"/g' icon.svg
           sed -i 's/stroke="[^"(none)]*"/stroke="currentColor"/g' icon.svg
-          svgo icon.svg -o icon.min.svg
+          echo 'module.exports = {
+            "plugins": [
+              {
+                "name": "preset-default",
+                "params": {
+                  "svg2": {
+                    "convertShapeToPath": true,
+                    "cleanupIDs": true,
+                    "mergePaths": true,
+                    "sortAttrs": true,
+                    "removeDimensions": true,
+                    "removeAttrs": {
+                      "attrs": ["width", "height"],
+                      "preserveCurrentColor": true
+                    },
+                    "addAttributesToSVGElement": {
+                      "attribute": "viewBox",
+                      "value": "0 0 100 100"
+                    }
+                  }
+                }
+              }
+            ]
+          }' > config.js
+          svgo --config config.js icon.svg -o icon.min.svg
           echo "svg_min=$(cat icon.min.svg)" >> $GITHUB_OUTPUT
           echo "svg_min=$(cat icon.min.svg)"
       - name: Create keywords
