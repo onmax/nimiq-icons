@@ -1,0 +1,6 @@
+export default {
+  name: "panama",
+  keywords: ["panama","centralamerica","country","republic","flag","canal","panamanian","coastline","panamaniancanal","panamacity","tropical","caribbean","isthmus","ocean","bridgeoftheamericas","bridge","americas","capital","panamanianflag","panamahat","beach","panamanianculture","panamanianpeople","panamaniancuisine","panamacanal","panamaniancuisine"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="none"><mask id="a" width="20" height="16" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="#fff" d="M0 .5h20v15H0z"/></mask><g mask="url(#a)"><path fill="currentColor" fill-rule="evenodd" d="M0 .5v15h20V.5H0Z" clip-rule="evenodd"/><mask id="b" width="20" height="16" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="#fff" fill-rule="evenodd" d="M0 .5v15h20V.5H0Z" clip-rule="evenodd"/></mask><g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" mask="url(#b)"><path d="M10 .5V8h10V.5H10ZM14.388 12.469l-1.439.89.559-1.495-1.223-1.131h1.483l.62-1.617.473 1.617h1.486l-1.07 1.131.524 1.495-1.413-.89ZM5.638 5.728l-1.439.89.559-1.494-1.223-1.132h1.483l.62-1.617.473 1.617h1.486l-1.07 1.132.523 1.495-1.412-.89ZM0 8v7.5h10V8H0Z"/></g></g></svg>',
+  category: "Country",
+} satisfies Icon;
