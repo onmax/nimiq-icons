@@ -1,0 +1,6 @@
+export default {
+  name: "person 9",
+  keywords: ["person","human","individual","man","woman","adult","child","being","character","identity","face","head","body","profile","portrait","citizen","mortal","personage","persona","personification","physiognomy","visage","appearance","figure","form","countenance"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 49 42"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M24.09 24.693c-2.5 7.41-13.751 7.41-13.751-4.943a76.896 76.896 0 0 0 27.5 0c0 12.353-11.25 12.353-13.75 4.943Zm-2.123 8.504c.585.203 1.2.306 1.82.304h.708a5.498 5.498 0 0 0 1.82-.304M9.089 16c.062-6.857 2.5-15 15.05-15"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M39.09 16c-.062-6.857-2.5-15-15.05-15M12.86 33.185A15.558 15.558 0 0 0 24.138 41a15.557 15.557 0 0 0 11.28-7.82M9.089 16.002c3.355-.07 9.72.89 15-5.462 5.295 6.37 11.678 5.387 15 5.462"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.09 16c-.44 5.795-3.403 14.25-7.336 15.946a1.249 1.249 0 0 0-.527 1.865 8.978 8.978 0 0 0 13.315 1.83M39.088 16c.44 5.796 3.402 14.25 7.335 15.946a1.25 1.25 0 0 1 .527 1.865 8.975 8.975 0 0 1-13.25 1.88"/></svg>',
+  category: "Small",
+} satisfies Icon;
