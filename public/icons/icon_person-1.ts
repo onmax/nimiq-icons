@@ -1,0 +1,6 @@
+export default {
+  name: "person 1",
+  keywords: ["person","human","man","woman","individual","character","face","portrait","identity","being","self","body","figure","profile","appearance","expression","emotion","personality","crowd","group","community","society","team","friendship","interaction","connection"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 35 42"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.3 41c3.477 0 11.25-4.303 12.367-10.913a2.5 2.5 0 0 1 1.435-1.864c2.703-1.226 3.38-6.13 1.198-7.223 1.25-7.465 1.25-20-15-20S1.05 13.535 2.3 21C.113 22.093.8 27 3.496 28.223a2.5 2.5 0 0 1 1.435 1.864C6.039 36.697 13.819 41 17.299 41Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1.922 18.017a21.37 21.37 0 0 0 8.968-7.195 21.174 21.174 0 0 0 21.885 5.342M14.85 22.251a2.723 2.723 0 0 0-2.5-1.25 2.723 2.723 0 0 0-2.5 1.25m15 0a2.723 2.723 0 0 0-2.5-1.25 2.722 2.722 0 0 0-2.5 1.25"/><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.336 28.05h0c3.164-3.452 7.582-1.5 7.582-1.5s4.582-1.952 7.582 1.5h0c3 3 4.5 4.5 7 3.5s2.016 6-6 6c-5.5 0-8.582-2.452-8.582-2.452S13 37.55 8.336 37.55c-8.015 0-8.5-7-6-6s4-.5 7-3.5Z"/></svg>',
+  category: "Small",
+} satisfies Icon;
