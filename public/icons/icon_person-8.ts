@@ -1,0 +1,6 @@
+export default {
+  name: "person 8",
+  keywords: ["person","human","man","woman","individual","being","character","figure","face","portrait","identity","self","personality","body","soul","mind","emotion","expression","personification","avatar","image","appearance","characterization","profile","visage","physiognomy"],
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 35 42"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.3 41c3.477 0 11.25-4.303 12.367-10.913a2.5 2.5 0 0 1 1.435-1.864c2.702-1.226 3.38-6.13 1.197-7.223 1.25-7.465 1.25-20-15-20S1.05 13.535 2.3 21C.114 22.093.8 27 3.497 28.223a2.5 2.5 0 0 1 1.435 1.864C6.039 36.697 13.819 41 17.299 41Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1.923 18.017A12.11 12.11 0 0 0 9.851 9.75c1.857 4.85 5 7.5 16.25 7.5a21.197 21.197 0 0 0 6.675-1.085M21.964 31.948A1.248 1.248 0 0 1 20.75 33.5h-6.8a1.252 1.252 0 0 1-1.212-1.552l.625-2.5a1.25 1.25 0 0 1 1.212-.948h5.55a1.25 1.25 0 0 1 1.213.948l.625 2.5ZM14.85 23.5a2.723 2.723 0 0 0-2.5-1.25 2.723 2.723 0 0 0-2.5 1.25m15 0a2.723 2.723 0 0 0-2.5-1.25 2.723 2.723 0 0 0-2.5 1.25"/></svg>',
+  category: "Small",
+} satisfies Icon;
